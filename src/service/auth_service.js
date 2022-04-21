@@ -20,17 +20,29 @@ class AuthService {
 
   getProvider(provider) {
     switch (provider) {
-      case "google":
+      case "Google":
         return this.googleAuthProvider;
-      case "github":
+      case "Github":
         return this.githubAuthProvider;
       default:
         throw new Error("Not Suportted Provider");
     }
   }
 
+  getCredential(provider, result) {
+    switch (provider) {
+      case "Google":
+        return GoogleAuthProvider.credentialFromResult(result);
+      case "Github":
+        return GithubAuthProvider.credentialFromResult(result);
+      default:
+        throw new Error("Not Suportted Provider");
+    }
+  }
+
   logout() {
-    return signOut(this.auth);
+    // console.log(this.auth);
+    return signOut(getAuth());
   }
 }
 
