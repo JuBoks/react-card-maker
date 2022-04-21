@@ -1,0 +1,45 @@
+@value makerGreen from '../../common/colors.css';
+@value makerPink from '../../common/colors.css';
+@value makerWhite from '../../common/colors.css';
+
+ul {
+  padding: 0;
+}
+
+.loginContainer {
+  width: 30em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: makerWhite;
+}
+
+.list {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.item {
+  margin-bottom: 0.5em;
+}
+
+.btnLogin {
+  width: 100%;
+  padding: 0.3rem;
+  border-radius: 1.2rem;
+  border: 0.2rem solid makerGreen;
+  outline: 0;
+  font-size: 1.2rem;
+  background-color: transparent;
+  font-weight: 700;
+  color: makerGreen;
+  cursor: pointer;
+}
+
+.btnLogin:hover {
+  background-color: makerPink;
+}

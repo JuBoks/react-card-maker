@@ -1,14 +1,24 @@
 import React from 'react';
 import Footer from '../footer/footer';
 import Header from '../header/header';
+import styles from './login.module.css';
 
 const Login = ({authService}) => {
   
   return (
-    <section>
+    <section className={styles.loginContainer}>
       <Header />
-      <button onClick={() => {authService.login('google');}}>구글로 로그인</button>
-      <button onClick={() => {authService.login('github');}}>깃헙으로 로그인</button>
+      <section>
+        <h1>Login</h1>
+        <ul className={styles.list}>
+          <li className={styles.item}>
+            <button className={styles.btnLogin} onClick={() => {authService.login('google');}}>Google</button>
+          </li>
+          <li>
+            <button className={styles.btnLogin} onClick={() => {authService.login('github');}}>Github</button>
+          </li>
+        </ul>
+      </section>
       <Footer />
     </section>
 )};
