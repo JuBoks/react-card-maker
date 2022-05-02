@@ -1,18 +1,19 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import styles from './home.module.css';
 
-const Home = ({ onLogout }) => {
+const Home = ({ onLogout, authService }) => {
   const navigate = useNavigate();
-  const state = useLocation();
 
   useEffect(() => {
-    if (!state.state || !state.state.token) {
-      navigate("/");
-    }
+    authService.onAuthChanged(user => {
+      if (!user){
+        navigate("/");
+      }
+    })
   }, []);
   
   return (

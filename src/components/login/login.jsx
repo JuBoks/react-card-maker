@@ -1,9 +1,16 @@
 import React from 'react';
+import { useEffect } from 'react';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import styles from './login.module.css';
 
-const Login = ({onLogin}) => {
+const Login = ({onLogin, onAuthChanged}) => {
+
+  useEffect(() => {
+    console.log('start')
+    onAuthChanged();
+  })
+
   return (
     <section className={styles.loginContainer}>
       <Header />

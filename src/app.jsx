@@ -6,6 +6,10 @@ import Home from './components/home/home';
 function App({authService}) {
   const navigate = useNavigate();
 
+  const goToHome = (userId) => {
+    navigate("/home", {state: {id: userId}});
+  };
+
   const onLogout = () => {
     authService.logout()
       .then(() => {
@@ -18,17 +22,22 @@ function App({authService}) {
 
   const onLogin = (provider) => {
     authService.login(provider)
-      .then((result) => {
-        const token = authService.getCredential(provider, result).accessToken;
-        navigate("/home", {state: {token}});
+      .then((data) => {
+        goToHome(data.user.uid);
       })
-  }
+  };
+
+  const onAuthChanged = () => {
+    authService.onAuthChanged(user => {
+      user && goToHome(user.uid);
+    })
+  };
 
   return (
       <div className={styles.app}>
       <Routes>
-        <Route path="/" element={<Login onLogin={onLogin}/>} />
-        <Route path="home" element={<Home onLogout={onLogout} />} />
+        <Route path="/" element={<Login onLogin={onLogin} onAuthChanged={onAuthChanged} />} />
+        <Route path="home" element={<Home onLogout={onLogout} authService={authService} />} />
       </Routes>
       </div>
   );
